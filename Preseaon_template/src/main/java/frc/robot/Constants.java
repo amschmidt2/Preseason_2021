@@ -33,6 +33,9 @@ public final class Constants {
 	public static final double AUTONOMOUS_SPEED = 0.4;
 	public static final double DRIVE_FORWARD_TIME = 3;
 	public static final double SHOOTER_SPEED = 0.5;
+
+    //Network Tables
+    public static final String INFO_TABLE = "infoTable";
 	
 	
 

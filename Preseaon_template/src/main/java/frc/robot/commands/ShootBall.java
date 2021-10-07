@@ -8,8 +8,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 public class ShootBall extends CommandBase {
-  Shooter shooter; 
+  Shooter shooter;
+  NetworkTableEntry entry;
   
   /** Creates a new ShootBall. */
   public ShootBall(Shooter s) {
@@ -23,6 +28,10 @@ public class ShootBall extends CommandBase {
   public void initialize() {
     System.out.println(Constants.SHOOTER_SPEED);
 
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable(Constants.INFO_TABLE);
+    entry = table.getEntry("SHOOTER_SPEED");
+    entry.setDouble(Constants.SHOOTER_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,6 +44,7 @@ public class ShootBall extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     shooter.stop();
+    entry.delete();
   }
 
   // Returns true when the command should end.
