@@ -19,7 +19,6 @@ public class Shooter extends SubsystemBase {
     Shooter.setInverted(false);
     rightShooter = new Spark(Constants.RIGHTSHOOTER);
     rightShooter.setInverted(true);
-    //rightShooter = new Spark(Constants.RIGHTSHOOTER);
   }
 
   @Override

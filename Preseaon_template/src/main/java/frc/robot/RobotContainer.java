@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.commands.IntakeBall;
 import frc.robot.commands.ShootBall;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,6 +34,9 @@ public class RobotContainer {
     private final Shooter shooter; 
     private final ShootBall shootBall; 
 
+    private final Intake intake; 
+    private final IntakeBall intakeBall; 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     driveTrain= new DriveTrain();
@@ -47,6 +52,11 @@ public class RobotContainer {
     shooter = new Shooter();
     shootBall = new ShootBall(shooter);
     shootBall.addRequirements(shooter);
+
+    intake = new Intake();
+    intakeBall = new IntakeBall(intake); 
+    intakeBall.addRequirements(intake);
+    intake.setDefaultCommand(intakeBall);
     // Configure the button bindings
 
     configureButtonBindings();
