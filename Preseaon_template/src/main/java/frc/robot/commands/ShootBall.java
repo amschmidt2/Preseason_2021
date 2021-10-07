@@ -26,15 +26,12 @@ public class ShootBall extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-<<<<<<< HEAD
     System.out.println(Constants.SHOOTER_SPEED);
 
-=======
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
     NetworkTable table = inst.getTable(Constants.INFO_TABLE);
     entry = table.getEntry("SHOOTER_SPEED");
     entry.setDouble(Constants.SHOOTER_SPEED);
->>>>>>> show the shooter speed in a networktable when the command is scheduled
   }
 
   // Called every time the scheduler runs while the command is scheduled.
