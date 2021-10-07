@@ -4,8 +4,12 @@
 
 package frc.robot;
 
+
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.IntakeBall;
@@ -33,6 +37,7 @@ public class RobotContainer {
 
     private final Shooter shooter; 
     private final ShootBall shootBall; 
+    private final AutoShoot autoShoot; 
 
     private final Intake intake; 
     private final IntakeBall intakeBall; 
@@ -52,11 +57,19 @@ public class RobotContainer {
     shooter = new Shooter();
     shootBall = new ShootBall(shooter);
     shootBall.addRequirements(shooter);
+    
+    autoShoot = new AutoShoot(shooter);
+    autoShoot.addRequirements(shooter);
 
     intake = new Intake();
     intakeBall = new IntakeBall(intake); 
     intakeBall.addRequirements(intake);
     intake.setDefaultCommand(intakeBall);
+
+    //intitialize camera
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setResolution(Constants.CAMERA_RES_X, Constants.CAMERA_RES_Y);
+
     // Configure the button bindings
 
     configureButtonBindings();
