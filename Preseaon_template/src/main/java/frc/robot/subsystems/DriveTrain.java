@@ -4,7 +4,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Jaguar;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -12,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveTrain extends SubsystemBase {
-  Jaguar left; 
-  Jaguar right; 
+  CANSparkMax Left; 
+  CANSparkMax right; 
   SpeedControllerGroup leftMotors; 
   SpeedControllerGroup rightMotors;
   DifferentialDrive drive; 
@@ -21,15 +23,14 @@ public class DriveTrain extends SubsystemBase {
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
-    left = new Jaguar(Constants.Left);
-    left.setInverted(false);
-    right = new Jaguar(Constants.Right);
+    Left = new CANSparkMax(1, MotorType.kBrushless);
+    Left.setInverted(false);
+    right = new CANSparkMax(2, MotorType.kBrushless);
     right.setInverted(false);
-    //leftMotors = new SpeedControllerGroup(leftFront, leftBack);
-    //rightMotors = new SpeedControllerGroup(rightFront, rightBack);
+    // leftMotors = new SpeedControllerGroup(leftFront, leftBack);
+    // rightMotors = new SpeedControllerGroup(rightFront, rightBack);
 
-
-    drive = new DifferentialDrive(left, right);
+    drive = new DifferentialDrive(Left, right);
 
 
   }
@@ -44,7 +45,7 @@ public class DriveTrain extends SubsystemBase {
   }
   public void driveForward(double speed)
   {
-    drive.tankDrive(speed, speed);
+    drive.tankDrive(speed, speed);//use this to change the speed of the left or right motor indepently 
   }
 
   public void stop()

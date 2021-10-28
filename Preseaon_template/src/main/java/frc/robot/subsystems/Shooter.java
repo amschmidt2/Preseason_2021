@@ -4,20 +4,21 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+
 public class Shooter extends SubsystemBase {
-  Spark Shooter; 
-  Spark rightShooter;
+  PWMSparkMax leftShooter; 
+  PWMSparkMax rightShooter;
  // Spark rightShooter; 
 
   /** Creates a new Shooter. */
   public Shooter() {
-    Shooter = new Spark(Constants.SHOOTER);
-    Shooter.setInverted(false);
-    rightShooter = new Spark(Constants.RIGHTSHOOTER);
+    leftShooter = new PWMSparkMax(Constants.LEFTSHOOTER);
+    leftShooter.setInverted(false);
+    rightShooter = new PWMSparkMax(Constants.RIGHTSHOOTER);
     rightShooter.setInverted(true);
     //rightShooter = new Spark(Constants.RIGHTSHOOTER);
   }
@@ -28,12 +29,12 @@ public class Shooter extends SubsystemBase {
   }
   
   public void shootBall(double speed){
-    Shooter.set(speed);
+    leftShooter.set(speed);
     rightShooter.set(speed);
   }
 
   public void stop(){
-  Shooter.set(0); 
+  leftShooter.set(0); 
   rightShooter.set(0);
   }
 }

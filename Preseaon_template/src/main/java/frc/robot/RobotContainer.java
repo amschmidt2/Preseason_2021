@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveForwardTimed;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.ShootBall;
+import frc.robot.commands.moveBall;
+import frc.robot.subsystems.Conveyer;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,6 +33,8 @@ public class RobotContainer {
 
     private final Shooter shooter; 
     private final ShootBall shootBall; 
+    private final Conveyer conveyer; 
+    private final moveBall moveBall; 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -47,6 +51,12 @@ public class RobotContainer {
     shooter = new Shooter();
     shootBall = new ShootBall(shooter);
     shootBall.addRequirements(shooter);
+    conveyer = new Conveyer();
+    moveBall = new moveBall(conveyer);
+    moveBall.addRequirements(conveyer);
+
+
+
     // Configure the button bindings
 
     configureButtonBindings();
@@ -61,6 +71,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     JoystickButton shootButton = new JoystickButton(driverJoystick, XboxController.Button.kBumperRight.value);
     shootButton.whileHeld(new ShootBall(shooter));
+    JoystickButton moveBall = new JoystickButton(driverJoystick, XboxController.Button.kBumperLeft.value);
+    moveBall.whileHeld(new moveBall(conveyer));
   }
 
   /**

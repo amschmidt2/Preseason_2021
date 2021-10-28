@@ -14,10 +14,10 @@ package frc.robot;
  */
 public final class Constants {
     //PWM for the drive motors
-	public static final int Left = 0;
-    public static final int Right = 1;
-    public static final int SHOOTER = 2;
-    public static final int RIGHTSHOOTER = 3;
+	
+    
+    public static final int LEFTSHOOTER = 0;
+    public static final int RIGHTSHOOTER = 1;
 
 
     //AXIS
@@ -33,6 +33,9 @@ public final class Constants {
 	public static final double AUTONOMOUS_SPEED = 0.4;
 	public static final double DRIVE_FORWARD_TIME = 3;
 	public static final double SHOOTER_SPEED = 0.5;
+	public static final double CONVEYER1 = 0.5;
+	public static final double CONVEYER2 = -0.5;
+	
 	
 	
 
